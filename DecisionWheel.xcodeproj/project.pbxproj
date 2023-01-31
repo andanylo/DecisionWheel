@@ -16,6 +16,10 @@
 		1D09FFE3275E86E30004AE1D /* DecisionWheelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09FFE2275E86E30004AE1D /* DecisionWheelTests.swift */; };
 		1D09FFED275E86E40004AE1D /* DecisionWheelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09FFEC275E86E40004AE1D /* DecisionWheelUITests.swift */; };
 		1D09FFEF275E86E40004AE1D /* DecisionWheelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09FFEE275E86E40004AE1D /* DecisionWheelUITestsLaunchTests.swift */; };
+		1DA542CA29899CBD003C1744 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA542C929899CBD003C1744 /* Section.swift */; };
+		1DA542CE29899CFC003C1744 /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA542CD29899CFC003C1744 /* SectionData.swift */; };
+		1DA542D029899D2D003C1744 /* WheelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA542CF29899D2D003C1744 /* WheelViewModel.swift */; };
+		1DA542D229899D8E003C1744 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA542D129899D8E003C1744 /* Wheel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		1D09FFE8275E86E40004AE1D /* DecisionWheelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DecisionWheelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D09FFEC275E86E40004AE1D /* DecisionWheelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionWheelUITests.swift; sourceTree = "<group>"; };
 		1D09FFEE275E86E40004AE1D /* DecisionWheelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionWheelUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1DA542C929899CBD003C1744 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		1DA542CD29899CFC003C1744 /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
+		1DA542CF29899D2D003C1744 /* WheelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewModel.swift; sourceTree = "<group>"; };
+		1DA542D129899D8E003C1744 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,9 @@
 		1D09FFCB275E86E10004AE1D /* DecisionWheel */ = {
 			isa = PBXGroup;
 			children = (
+				1DA542CC29899CE4003C1744 /* Models */,
+				1DA542CB29899CDA003C1744 /* ViewModels */,
+				1DA542C829899CB1003C1744 /* Views */,
 				1D09FFCC275E86E10004AE1D /* DecisionWheelApp.swift */,
 				1D09FFCE275E86E10004AE1D /* ContentView.swift */,
 				1D09FFD0275E86E30004AE1D /* Assets.xcassets */,
@@ -131,6 +142,31 @@
 				1D09FFEE275E86E40004AE1D /* DecisionWheelUITestsLaunchTests.swift */,
 			);
 			path = DecisionWheelUITests;
+			sourceTree = "<group>";
+		};
+		1DA542C829899CB1003C1744 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1DA542C929899CBD003C1744 /* Section.swift */,
+				1DA542D129899D8E003C1744 /* Wheel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1DA542CB29899CDA003C1744 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1DA542CF29899D2D003C1744 /* WheelViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1DA542CC29899CE4003C1744 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1DA542CD29899CFC003C1744 /* SectionData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,10 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA542CA29899CBD003C1744 /* Section.swift in Sources */,
 				1D09FFD6275E86E30004AE1D /* Persistence.swift in Sources */,
 				1D09FFD9275E86E30004AE1D /* DecisionWheel.xcdatamodeld in Sources */,
+				1DA542D229899D8E003C1744 /* Wheel.swift in Sources */,
 				1D09FFCF275E86E10004AE1D /* ContentView.swift in Sources */,
+				1DA542D029899D2D003C1744 /* WheelViewModel.swift in Sources */,
 				1D09FFCD275E86E10004AE1D /* DecisionWheelApp.swift in Sources */,
+				1DA542CE29899CFC003C1744 /* SectionData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
