@@ -11,9 +11,10 @@ class WheelViewModel: ObservableObject{
     
     
     @Published var sections: [SectionData] = [SectionData(name: "Hello", percentage: 1 / 4), SectionData(name: "World", percentage: 1 / 2), SectionData(name: "!", percentage: 1 / 4)]
+    @Published var randomSection: SectionData?
     
-    
-    let rotationsPerSecond = 3
+    let rotationsPerSecond = 2
+    let rotationDuration = 10
     
     ///Calculates start and end angles for a section
     private func calculateAnglesForSection(section: SectionData) -> Angles{
@@ -27,24 +28,24 @@ class WheelViewModel: ObservableObject{
     }
     
     ///Picks random section
-//    func pickRandomSection() -> SectionData?{
-//        let randomNumber = Int.random(in: 0...100)
-//        
-//        var currentEdge = 0
-//        for section in sections{
-//            let sectionEdge = Int(section.percantage * 100)
-//            let newEdge = currentEdge + sectionEdge
-//            
-//            
-//            ///Random number lies between the edges
-//            if randomNumber >= currentEdge && randomNumber <= newEdge{
-//                return
-//            }
-//            currentEdge = newEdge
-//            
-//        }
-//        return sections.first
-//    }
+    func pickRandomSection() -> SectionData?{
+        let randomNumber = Int.random(in: 0...100)
+        
+        var currentEdge = 0
+        for section in sections{
+            let sectionEdge = min(100, Int(section.percentage * 100))
+            let newEdge = currentEdge + sectionEdge
+            
+            print(currentEdge, newEdge, randomNumber)
+            ///Random number lies between the edges
+            if randomNumber >= currentEdge && randomNumber <= newEdge{
+                return section
+            }
+            currentEdge = newEdge
+            
+        }
+        return sections.first
+    }
     
     
     init(){

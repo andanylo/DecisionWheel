@@ -23,4 +23,9 @@ class SectionData {
 struct Angles{
     var startAngle: Double = 0
     var endAngle: Double = 0
+    
+    
+    func getRandomBetweenAngle() -> Double{
+        return Double.random(in: startAngle...endAngle)
+    }
 }
