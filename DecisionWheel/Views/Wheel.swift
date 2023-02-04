@@ -8,20 +8,37 @@
 import Foundation
 import SwiftUI
 
+struct Pointer: Shape{
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let startPoint = CGPoint(x: rect.midX-5, y: rect.minY+35)
+        
+        path.move(to: startPoint)
+        path.addLine(to: CGPoint(x: startPoint.x+10, y: startPoint.y))
+        path.addLine(to: CGPoint(x: startPoint.x+5, y: startPoint.y+15))
+        path.addLine(to: startPoint)
+        path.closeSubpath()
+        return path
+    }
+    
+    
+}
+
+
 struct Wheel: View{
     @ObservedObject var wheelViewModel: WheelViewModel
     
     var body: some View{
         ZStack{
-            Circle()
-                .scale(0.7)
-                .shadow(radius: 5)
+            
+            
             ForEach(wheelViewModel.sections, id: \.id){ item in
-                Slice(startAngle: .degrees(item.angles.startAngle), endAngle: .degrees(item.angles.endAngle))
-                    .scale(0.7)
-                    .foregroundColor(Color(red: Double.random(in: 0...1), green: Double.random(in: 0...1), blue: Double.random(in: 0...1)))
+                Section(sectionData: item)
+                    .rotationEffect(Angle(degrees: item.angles.startAngle + item.angles.getSize() / 2))
+                    //.scale(0.7)
             }
         }
+        
         
     }
 }

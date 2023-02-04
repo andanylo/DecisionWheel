@@ -24,6 +24,10 @@ struct Angles{
     var startAngle: Double = 0
     var endAngle: Double = 0
     
+    ///Returns size in degrees
+    func getSize() -> Double{
+        return endAngle - startAngle
+    }
     
     func getRandomBetweenAngle() -> Double{
         return Double.random(in: startAngle...endAngle)

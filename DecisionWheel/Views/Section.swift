@@ -21,3 +21,27 @@ struct Slice: Shape{
         return path
     }
 }
+
+
+struct Section: View{
+    var sectionData: SectionData
+    
+    
+    var body: some View{
+        ZStack{
+
+                Text(sectionData.name + "     ")
+                        .foregroundColor(Color.white)
+                        .font(Font.system(size: 20, weight: .bold))
+                        .frame(minWidth: UIScreen.main.bounds.width, minHeight: UIScreen.main.bounds.width, alignment: .trailing)
+                        .background{
+                            Slice(startAngle: .degrees(-1.0 * sectionData.angles.getSize() / 2.0), endAngle: .degrees(sectionData.angles.getSize() / 2.0))
+                                .foregroundColor(Color(red: Double.random(in: 0...1), green: Double.random(in: 0...1), blue: Double.random(in: 0...1)))
+                        }
+            
+        }
+        
+   
+        
+    }
+}

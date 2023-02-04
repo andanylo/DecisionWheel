@@ -10,11 +10,17 @@ import SwiftUI
 class WheelViewModel: ObservableObject{
     
     
-    @Published var sections: [SectionData] = [SectionData(name: "Hello", percentage: 1 / 4), SectionData(name: "World", percentage: 1 / 2), SectionData(name: "!", percentage: 1 / 4)]
+    @Published var sections: [SectionData] = [SectionData(name: "Hello", percentage: 1 / 4), SectionData(name: "World", percentage: 1 / 8), SectionData(name: "!", percentage: 1 / 4), SectionData(name: "Hello 2", percentage: 1 / 8), SectionData(name: "Hello 3", percentage: 1 / 8), SectionData(name: "Hello 4", percentage: 1 / 8)]
     @Published var randomSection: SectionData?
     
     let rotationsPerSecond = 2
     let rotationDuration = 10
+    let pointerLocation = PointerLocation.top
+    
+    func getEndWheelAngle(randomSection: SectionData) -> Double{
+        
+        return Double(360 * self.rotationsPerSecond * self.rotationDuration) + 360 - randomSection.angles.getRandomBetweenAngle() + pointerLocation.rawValue
+    }
     
     ///Calculates start and end angles for a section
     private func calculateAnglesForSection(section: SectionData) -> Angles{
@@ -53,10 +59,5 @@ class WheelViewModel: ObservableObject{
             i.angles = calculateAnglesForSection(section: i)
         }
     }
-    ///Adds section to an array
-//    func addSection(name: String, percantage: Float){
-//
-//        let newSection = SectionData(name: name, percantage: percantage)
-//
-//    }
+
 }

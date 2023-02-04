@@ -38,38 +38,62 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
+            
             Text(wheelViewModel.randomSection?.name ?? "????")
                 .opacity(isFinished ? 1 : 0)
-            Wheel(wheelViewModel: wheelViewModel)
-                .modifier(AnimatableModifierDouble(bindedValue: angle, isFinished: isFinished, completion: {
-                    isFinished = true
-                    print("finished")
-                }))
-                .rotationEffect(.degrees(angle))
-                .onTapGesture {
-                    
-                    //Reset
-                    angle = -90//angle.truncatingRemainder(dividingBy: 360)
-                    isFinished = false
-                    
-                    //Set random section
-                    guard let section = wheelViewModel.pickRandomSection() else{
-                        return
+                .font(Font.system(size: 28, weight: .heavy))
+
+            ZStack{
+                Wheel(wheelViewModel: wheelViewModel)
+                    .modifier(AnimatableModifierDouble(bindedValue: angle, isFinished: isFinished, completion: {
+                        isFinished = true
+                    }))
+                    .rotationEffect(.degrees(angle))
+                    .onTapGesture {
+
+                        //Reset
+                        angle = angle.truncatingRemainder(dividingBy: 360)//wheelViewModel.pointerLocation.rawValue //-90//angle.truncatingRemainder(dividingBy: 360)
+                        isFinished = false
+
+                        //Set random section
+                        guard let section = wheelViewModel.pickRandomSection() else{
+                            return
+                        }
+                        wheelViewModel.randomSection = section
+
+                        //Set end angle
+                        let endAngle = wheelViewModel.getEndWheelAngle(randomSection: section)
+                        print(endAngle)
+        
+                        withAnimation(self.repeatAnimation) {
+                            angle = endAngle// - 90
+                            //angle = CGFloat.random(in: angle+3600...angle+7200)
+                        }
+
                     }
-                    wheelViewModel.randomSection = section
+                    .shadow(radius: 5)
+                    .scaledToFit()
+                    .scaleEffect(x: 0.8, y: 0.8)
+                Pointer()
+                    .stroke(lineWidth: 4)
                     
-                    //Set end angle
-                    let endAngle = Double(360 * wheelViewModel.rotationsPerSecond * wheelViewModel.rotationDuration) + section.angles.getRandomBetweenAngle()
-                    withAnimation(self.repeatAnimation) {
-                        angle = endAngle - 90
-                        //angle = CGFloat.random(in: angle+3600...angle+7200)
-                    }
-                    
-                }
-                .scaledToFit()
+                    .foregroundColor(Color.red)
+               
+            }
+            .scaledToFit()
             
             
+            Text("Tap the Wheel to roll!")
+            Button("Edit wheel", action: {
                 
+            })
+                .scaledToFit()
+                .buttonStyle(.bordered)
+                
+        }
+        
+        .onAppear{
+            angle = wheelViewModel.pointerLocation.rawValue
         }
         
     }
@@ -79,10 +103,16 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            
     }
 }
 
-
+enum PointerLocation: Double{
+    case top = 270
+    case right = 0
+    case bottom = 90
+    case left = 180
+}
 
 struct AnimatableModifierDouble: AnimatableModifier {
 
@@ -91,7 +121,6 @@ struct AnimatableModifierDouble: AnimatableModifier {
     // SwiftUI gradually varies it from old value to the new value
     var animatableData: Double {
         didSet {
-            
             checkIfFinished()
         }
     }
