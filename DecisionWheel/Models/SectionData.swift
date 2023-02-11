@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class SectionData {
+class SectionData: Identifiable {
     let id = UUID()
     var name: String
     var percentage: Float

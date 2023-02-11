@@ -23,9 +23,8 @@ struct Slice: Shape{
 }
 
 
-struct Section: View{
+struct SectionWheel: View{
     var sectionData: SectionData
-    
     
     var body: some View{
         ZStack{

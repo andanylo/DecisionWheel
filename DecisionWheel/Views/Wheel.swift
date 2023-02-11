@@ -27,16 +27,18 @@ struct Pointer: Shape{
 
 struct Wheel: View{
     @ObservedObject var wheelViewModel: WheelViewModel
-    
+
     var body: some View{
         ZStack{
             
+
+                ForEach(wheelViewModel.sections, id: \.id){ item in
+                    SectionWheel(sectionData: item)
+                        .rotationEffect(Angle(degrees: item.angles.startAngle + item.angles.getSize() / 2))
+                        //.scale(0.7)
+                }
             
-            ForEach(wheelViewModel.sections, id: \.id){ item in
-                Section(sectionData: item)
-                    .rotationEffect(Angle(degrees: item.angles.startAngle + item.angles.getSize() / 2))
-                    //.scale(0.7)
-            }
+            
         }
         
         

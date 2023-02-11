@@ -32,7 +32,7 @@ struct ContentView: View {
     }
     
     @State var isFinished = false
-    
+    @State var isEditing = false
     
     @StateObject var wheelViewModel: WheelViewModel = WheelViewModel()
     
@@ -85,7 +85,7 @@ struct ContentView: View {
             
             Text("Tap the Wheel to roll!")
             Button("Edit wheel", action: {
-                
+                isEditing = true
             })
                 .scaledToFit()
                 .buttonStyle(.bordered)
@@ -94,6 +94,10 @@ struct ContentView: View {
         
         .onAppear{
             angle = wheelViewModel.pointerLocation.rawValue
+        }
+        .sheet(isPresented: $isEditing) {
+            
+            SectionEditor(sectionEditViewModel: SectionEditViewModel(sections: wheelViewModel.sections), wheelViewModel: wheelViewModel)
         }
         
     }
