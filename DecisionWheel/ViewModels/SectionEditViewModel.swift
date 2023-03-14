@@ -57,7 +57,7 @@ class SectionEditViewModel: ObservableObject{
         }
         
         
-        var valueToDivideBetweenModels = ((1.0 - currentEditingValue) * 100).rounded() / 100
+        let valueToDivideBetweenModels = ((1.0 - currentEditingValue) * 100).rounded() / 100
         var cumulativeOtherValues: Float = 0.0
         for i in notEditedViewModels{
             cumulativeOtherValues += i.currentPercentage

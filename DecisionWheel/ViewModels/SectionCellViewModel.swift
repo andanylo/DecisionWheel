@@ -7,7 +7,7 @@
 
 import Foundation
 
-//View model to display for each cell inside edit section view
+//View model to display cell inside edit section view
 class SectionCellViewModel: ObservableObject, Identifiable{
     let id = UUID()
     weak var sectionEditViewModel: SectionEditViewModel?

@@ -66,7 +66,7 @@ class WheelViewModel: ObservableObject{
     func createSectionsData(sectionCellViewModels: [SectionCellViewModel]) -> [SectionData]{
         var sections: [SectionData] = []
         for i in sectionCellViewModels{
-            var newSection = SectionData(name: i.name, percentage: i.currentPercentage)
+            let newSection = SectionData(name: i.name, percentage: i.currentPercentage)
             sections.append(newSection)
         }
         

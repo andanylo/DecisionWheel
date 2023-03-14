@@ -18,11 +18,6 @@ struct ContentView: View {
     var repeatAnimation: Animation{
         Animation
             .timingCurve(0, 0.8, 0.1, 1, duration: Double(wheelViewModel.rotationDuration))
-            //.spring(response: 1.3, dampingFraction: Double(wheelViewModel.rotationDuration), blendDuration: 10)
-            
-            //.spring(response: 1.3, dampingFraction: 2.3, blendDuration: 0)
-        //.repeatForever(autoreverses: false)
-            
     }
     var endAnimation: Animation{
         Animation
@@ -52,7 +47,7 @@ struct ContentView: View {
                     .onTapGesture {
 
                         //Reset
-                        angle = angle.truncatingRemainder(dividingBy: 360)//wheelViewModel.pointerLocation.rawValue //-90//angle.truncatingRemainder(dividingBy: 360)
+                        angle = angle.truncatingRemainder(dividingBy: 360)
                         isFinished = false
 
                         //Set random section
@@ -63,11 +58,9 @@ struct ContentView: View {
 
                         //Set end angle
                         let endAngle = wheelViewModel.getEndWheelAngle(randomSection: section)
-                        print(endAngle)
-        
+
                         withAnimation(self.repeatAnimation) {
-                            angle = endAngle// - 90
-                            //angle = CGFloat.random(in: angle+3600...angle+7200)
+                            angle = endAngle
                         }
 
                     }

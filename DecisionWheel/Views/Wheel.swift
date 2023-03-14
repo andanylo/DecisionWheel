@@ -35,7 +35,6 @@ struct Wheel: View{
                 ForEach(wheelViewModel.sections, id: \.id){ item in
                     SectionWheel(sectionData: item)
                         .rotationEffect(Angle(degrees: item.angles.startAngle + item.angles.getSize() / 2))
-                        //.scale(0.7)
                 }
             
             

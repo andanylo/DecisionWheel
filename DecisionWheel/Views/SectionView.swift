@@ -25,7 +25,10 @@ struct SectionView: View{
                         .frame(width:10)
                     Button {
                         if let index = sectionCellViewModel.sectionEditViewModel?.sectionCellViewModels.firstIndex(where: {$0 === sectionCellViewModel}){
-                            sectionCellViewModel.sectionEditViewModel?.sectionCellViewModels.remove(at: index)
+                            _ = withAnimation {
+                                sectionCellViewModel.sectionEditViewModel?.sectionCellViewModels.remove(at: index)
+                            }
+                            
                             sectionCellViewModel.sectionEditViewModel?.adjustCurrentPercentage(currentEditingViewModel: nil)
                         }
                     } label: {
@@ -53,7 +56,7 @@ struct SectionView: View{
                 }
                 HStack{
                     
-                    Text(String(format: "%.2f", sectionCellViewModel.currentPercentage * 100) + "%")
+                    Text(String(format: "%.1f", sectionCellViewModel.currentPercentage * 100) + "%")
                         .frame(width: 50)
                         .font(Font.system(size: 11))
                     Slider(value: $sectionCellViewModel.currentPercentage, in: 0.0...1.0, step: 0.01, onEditingChanged: { editing in
@@ -79,9 +82,6 @@ struct SectionView: View{
             
             
         }
-//        .onTapGesture {
-//            isFocused = true
-//        }
         .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
         .frame(height: 100)
         

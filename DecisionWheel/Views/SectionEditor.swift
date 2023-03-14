@@ -29,7 +29,9 @@ struct SectionEditor: View{
                 .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
             HStack{
                 Button {
-                    sectionEditViewModel.addCellViewModel()
+                    _ = withAnimation {
+                        sectionEditViewModel.addCellViewModel()
+                    }
                 } label: {
                     Image(systemName: "plus.circle")
                 }
@@ -53,12 +55,6 @@ struct SectionEditor: View{
             .buttonStyle(.bordered)
         }
 
-        
-//        ScrollView{
-//            VStack{
-        
-
-        
         
 
     }
